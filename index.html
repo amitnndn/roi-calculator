@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ROI Calculator</title>
+	<script type="text/javascript" src="includes/js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript" src="includes/js/angular.js"></script>
+	<script type="text/javascript" src="includes/js/fcsanumber.js"></script>
+	<script type="text/javascript">
+		var roiCalculator = angular.module("roiCalculator",["fcsa-number"]);
+
+		roiCalculator.controller("calculatorController",function($scope){
+			$scope.minSpending = $scope.maxSpending = $scope.yearlyRevenue = $scope.revenuePerCustomer = $scope.visitorPercent = $scope.salesPercent = $scope.leadsPerHundred = $scope.salesPerTen = 0;
+			
+			$scope.change = function(){
+				alert(change);
+			};
+
+			$scope.monthlyRevenue = function(){
+				return ($scope.yearlyRevenue/12);
+			};
+
+			$scope.salesPerMonth = 0;
+
+			$scope.leadsPerMonth = 0;
+
+			$scope.salesNumber = function(){
+				$scope.monthOrYearSales = "month";
+				var returnVal = $scope.monthlyRevenue()/$scope.revenuePerCustomer;
+				$scope.salesPerMonth = returnVal;
+				if(returnVal < 1){
+					returnVal = returnVal * 12;
+					$scope.monthOrYearSales = "year";
+				}
+				return returnVal;
+			}
+
+			$scope.leadsNumber = function(){
+				$scope.monthOrYearLeads = "month";
+				var returnVal = $scope.salesPerMonth/($scope.salesPerTen/10);
+				$scope.leadsPerMonth = returnVal;
+				if(returnVal < 1){
+					returnVal = returnVal * 12;
+					$scope.monthOrYearLeads = "year";
+				}
+				return returnVal;
+			}
+
+			$scope.visitorsPerMonth = function(){
+				var returnVal = ($scope.leadsPerMonth * 100)/$scope.leadsPerHundred;
+				return returnVal;
+			}
+
+			$scope.minCostPerSale = function(){
+				var returnVal = $scope.monthlyRevenue()*($scope.minSpending/100)/$scope.salesPerMonth;
+				return returnVal;
+			}
+
+			$scope.maxCostPerSale = function(){
+				var returnVal = $scope.monthlyRevenue()*($scope.maxSpending/100)/$scope.salesPerMonth;
+				return returnVal;
+			}
+
+			$scope.minCostPerLead = function(){
+				var returnVal = $scope.monthlyRevenue()*($scope.minSpending/100)/$scope.leadsPerMonth;
+				return returnVal;
+			}
+
+			$scope.maxCostPerLead = function(){
+				var returnVal = $scope.monthlyRevenue()*($scope.maxSpending/100)/$scope.leadsPerMonth;
+				return returnVal;
+			}
+
+			$scope.minCostPerVisitor = function(){
+				var returnVal = $scope.monthlyRevenue()*($scope.minSpending/100)/$scope.visitorsPerMonth();
+				return returnVal;
+			}
+
+			$scope.maxCostPerVisitor = function(){
+				var returnVal = $scope.monthlyRevenue()*($scope.maxSpending/100)/$scope.visitorsPerMonth();
+				return returnVal;
+			}
+		});
+
+	</script>
+</head>
+<body ng-app="roiCalculator">
+<h1>ROI Calculator</h1>
+<div ng-controller="calculatorController">
+	<div class="field">
+		<label>For every 100 visitors to your site, how many turn into leads?</label>
+		<input type="text" ng-model="leadsPerHundred"></input>
+	</div>
+	<div class="field">
+		<label>For every 10 leads, how many turn into sales?</label>
+		<input type="text" ng-model="salesPerTen"></input>
+	</div>
+	<div class="field">
+		<label>How much in annual revenue ($) does one customer bring to you?</label>
+		<input type="text" fcsa-number="{ prepend : '$'}" ng-model="revenuePerCustomer"></input>
+	</div>
+	<div class="field">
+		<label>What is your total target revenue ($) for the next 12 months?*</label>
+		<input type="text" fcsa-number="{ prepend : '$' }" ng-model="yearlyRevenue"></input>
+	</div> 
+	<div class="field">
+		<label>Out of every $100 in revenue, how much would spend on marketing?</label>
+		<input type="text" fcsa-number="{ prepend : '$' }" ng-model="minSpending"></input>
+		<input type="text" fcsa-number="{ prepend : '$' }" ng-model="maxSpending"></input>
+	</div>
+	<div>&nbsp;</div>
+	<hr/>
+	<div>&nbsp;</div>
+	<div class="results">
+		<div>
+			<label>Lead Conversion Rate</label>
+			<span>{{leadsPerHundred}}%</span>
+		</div>
+		<div>
+			<label>Sales Conversion Rate</label>
+			<span>{{salesPerTen*10}}%</span>
+		</div>
+		<div>
+			<label>Target Monthly Revenue</label>
+			<span ng-model="monthlyRevenue">${{monthlyRevenue() | number:0}}</span>
+		</div>
+		<div ng-show="monthlyRevenue() && revenuePerCustomer">
+			<div>
+				<label>Number of sales required per {{monthOrYearSales}}</label>
+				<span>{{salesNumber() | number:0}}</span>
+			</div>
+			<div>
+				<label>Number of leads required per {{monthOrYearLeads}}</label>
+				<span>{{leadsNumber() | number:0}}</span>
+			</div>
+			<div>
+				<label>Number of Visitors required per month</label>
+				<span>{{visitorsPerMonth() | number:0}}</span>
+			</div>
+		</div>
+		<div>&nbsp;</div>
+		<div ng-show="monthlyRevenue() && revenuePerCustomer && minSpending && maxSpending">
+			<hr/>
+			<h2>Estimated Costs</h2>
+			<table>
+				<tr>
+					<th></th>
+					<th>Min</th>
+					<th>Max</th>
+				</tr>
+				<tr>
+					<td>Cost per Visitor</td>
+					<td>${{minCostPerVisitor() | number:0}}</td>
+					<td>${{maxCostPerVisitor() | number:0}}</td>
+				</tr>
+				<tr>
+					<td>Cost per Lead</td>
+					<td>${{minCostPerLead() | number:0}}</td>
+					<td>${{maxCostPerLead() | number:0}}</td>
+				</tr>
+				<tr>
+					<td>Cost per Sale</td>
+					<td>${{minCostPerSale() | number:0}}</td>
+					<td>${{maxCostPerSale() | number:0}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
+</body>
+</html>
