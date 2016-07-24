@@ -1,94 +1,167 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>ROI Calculator</title>
-	<script type="text/javascript" src="includes/js/jquery-1.12.3.min.js"></script>
-	<script type="text/javascript" src="includes/js/angular.js"></script>
-	<script type="text/javascript" src="includes/js/fcsanumber.js"></script>
-	<script type="text/javascript" src="includes/js/app.js"></script>
-</head>
-<body ng-app="roiCalculator">
-<h1>ROI Calculator</h1>
-<div ng-controller="calculatorController">
-	<div class="field">
-		<label>For every 100 visitors to your site, how many turn into leads?</label>
-		<input type="text" ng-model="leadsPerHundred"></input>
-	</div>
-	<div class="field">
-		<label>For every 10 leads, how many turn into sales?</label>
-		<input type="text" ng-model="salesPerTen"></input>
-	</div>
-	<div class="field">
-		<label>How much in annual revenue ($) does one customer bring to you?</label>
-		<input type="text" fcsa-number="{ prepend : '$'}" ng-model="revenuePerCustomer"></input>
-	</div>
-	<div class="field">
-		<label>What is your total target revenue ($) for the next 12 months?*</label>
-		<input type="text" fcsa-number="{ prepend : '$' }" ng-model="yearlyRevenue"></input>
-	</div> 
-	<div class="field">
-		<label>Out of every $100 in revenue, how much would spend on marketing?</label>
-		<input type="text" fcsa-number="{ prepend : '$' }" ng-model="minSpending"></input>
-		<input type="text" fcsa-number="{ prepend : '$' }" ng-model="maxSpending"></input>
-	</div>
-	<div>&nbsp;</div>
-	<hr/>
-	<div>&nbsp;</div>
-	<div class="results">
-		<div>
-			<label>Lead Conversion Rate</label>
-			<span>{{leadsPerHundred}}%</span>
-		</div>
-		<div>
-			<label>Sales Conversion Rate</label>
-			<span>{{salesPerTen*10}}%</span>
-		</div>
-		<div>
-			<label>Target Monthly Revenue</label>
-			<span ng-model="monthlyRevenue">${{monthlyRevenue() | number:0}}</span>
-		</div>
-		<div ng-show="monthlyRevenue() && revenuePerCustomer">
-			<div>
-				<label>Number of sales required per {{monthOrYearSales}}</label>
-				<span>{{salesNumber() | number:0}}</span>
+	<head>
+		<title>ROI Calculator</title>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="includes/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="includes/css/calculator-styles.css" />
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+          <script src="includes/js/html5shiv.min.js"></script>
+          <script src="includes/js/respond.min.js"></script>
+        <![endif]-->
+	</head>
+	<body ng-app="roiCalculator">
+		<div class="container">
+			<h1 class="blue-text">ROI Calculator</h1>
+			<div class="calculator" ng-controller="calculatorController">
+				<div class="user-input-section">
+					<h4 class="orange-text">Enter the following values to see your estimated marketing costs.</h4>
+					<div class="row field">
+						<div class="col-lg-8 col-md-7 col-sm-6 col-xs-12">
+							<label>For every 100 visitors to your site, how many turn into leads?</label>
+						</div>
+						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
+							<input type="text" class="form-control" ng-model="leadsPerHundred" />
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="row field">
+						<div class="col-lg-8 col-md-7 col-sm-6 col-xs-12">
+							<label>For every 10 leads, how many turn into sales?</label>
+						</div>
+						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
+							<input type="text" class="form-control" ng-model="salesPerTen" />
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="row field">
+						<div class="col-lg-8 col-md-7 col-sm-6 col-xs-12">
+							<label>How much in annual revenue ($) does one customer bring to you?</label>
+						</div>
+						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
+							<input type="text" class="form-control" fcsa-number="{ prepend : '$'}" ng-model="revenuePerCustomer" />
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="row field">
+						<div class="col-lg-8 col-md-7 col-sm-6 col-xs-12">
+							<label>What is your total target revenue ($) for the next 12 months?<sup>*</sup></label>
+						</div>
+						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
+							<input type="text" class="form-control" fcsa-number="{ prepend : '$' }" ng-model="yearlyRevenue" />
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="row field lessmargin">
+						<div class="col-lg-offset-8 col-lg-4 col-md-offset-7 col-md-5 col-sm-offset-6 col-sm-6 hidden-xs">
+							<div class="row">
+								<div class="col-xs-6 center-align">
+									Minimum
+								</div>
+								<div class="col-xs-6 center-align">
+									Maximum
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="row field">
+						<div class="col-lg-8 col-md-7 col-sm-6 col-xs-12">
+							<label>What is your total target revenue ($) for the next 12 months?<sup>*</sup></label>
+						</div>
+						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
+							<div class="row">
+								<div class="col-xs-6">
+									<label class="visible-xs center-align">Minimum</label>
+									<input type="text" class="form-control" fcsa-number="{ prepend : '$' }" ng-model="minSpending" />
+								</div>
+								<div class="col-xs-6">
+									<label class="visible-xs center-align">Maximum</label>
+									<input type="text" class="form-control" fcsa-number="{ prepend : '$' }" ng-model="maxSpending" />
+								</div>
+								<div class="clearfix"></div>
+							</div>
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<div class="output-section results">
+					<div class="output-primary">
+						<h4 class="orange-text">Output</h4>
+						<div class="row field">
+							<div class="col-sm-4 center-align">
+								<div class="output-label">Lead Conversion Rate</div>
+								<div class="output-stats blue-text">{{leadsPerHundred}}%</div>
+							</div>
+							<div class="col-sm-4 center-align">
+								<div class="output-label">Sales Conversion Rate</div>
+								<div class="output-stats blue-text">{{salesPerTen*10}}%</div>
+							</div>
+							<div class="col-sm-4 center-align">
+								<div class="output-label">Target Monthly Revenue</div>
+								<div ng-model="monthlyRevenue" class="output-stats blue-text">${{monthlyRevenue() | number:0}}</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+						<div ng-show="monthlyRevenue() && revenuePerCustomer" class="row field">
+							<div class="col-sm-4 center-align">
+								<div class="output-label">Number of Sales Required per {{monthOrYearSales}}</div>
+								<div class="output-stats blue-text">{{salesNumber() | number:0}}</div>
+							</div>
+							<div class="col-sm-4 center-align">
+								<div class="output-label">Number of leads required per {{monthOrYearLeads}}</div>
+								<div class="output-stats blue-text">{{leadsNumber() | number:0}}</div>
+							</div>
+							<div class="col-sm-4 center-align">
+								<div class="output-label">Number of Visitors Required per Month </div>
+								<div class="output-stats blue-text">{{visitorsPerMonth() | number:0}}</div>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+					<div class="output-secondary" ng-show="monthlyRevenue() && revenuePerCustomer && minSpending && maxSpending">
+						<h4 class="orange-text">Estimated Costs</h4>
+						<div class="table-responsive">
+							<table class="table table-bordered">
+								<thead>
+									<tr>
+										<th></th>
+										<th>Minimum</th>
+										<th>Maximum</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr>
+										<td>Cost per Visitor</td>
+										<td>${{minCostPerVisitor() | number:0}}</td>
+										<td>${{maxCostPerVisitor() | number:0}}</td>
+									</tr>
+									<tr>
+										<td>Cost per Lead</td>
+										<td>${{minCostPerLead() | number:0}}</td>
+										<td>${{maxCostPerLead() | number:0}}</td>
+									</tr>
+									<tr>
+										<td>Cost per Sale</td>
+										<td>${{minCostPerSale() | number:0}}</td>
+										<td>${{maxCostPerSale() | number:0}}</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
 			</div>
-			<div>
-				<label>Number of leads required per {{monthOrYearLeads}}</label>
-				<span>{{leadsNumber() | number:0}}</span>
-			</div>
-			<div>
-				<label>Number of Visitors required per month</label>
-				<span>{{visitorsPerMonth() | number:0}}</span>
-			</div>
 		</div>
-		<div>&nbsp;</div>
-		<div ng-show="monthlyRevenue() && revenuePerCustomer && minSpending && maxSpending">
-			<hr/>
-			<h2>Estimated Costs</h2>
-			<table>
-				<tr>
-					<th></th>
-					<th>Min</th>
-					<th>Max</th>
-				</tr>
-				<tr>
-					<td>Cost per Visitor</td>
-					<td>${{minCostPerVisitor() | number:0}}</td>
-					<td>${{maxCostPerVisitor() | number:0}}</td>
-				</tr>
-				<tr>
-					<td>Cost per Lead</td>
-					<td>${{minCostPerLead() | number:0}}</td>
-					<td>${{maxCostPerLead() | number:0}}</td>
-				</tr>
-				<tr>
-					<td>Cost per Sale</td>
-					<td>${{minCostPerSale() | number:0}}</td>
-					<td>${{maxCostPerSale() | number:0}}</td>
-				</tr>
-			</table>
-		</div>
-	</div>
-</div>
-</body>
+		<script type="text/javascript" src="includes/js/jquery-1.12.3.min.js"></script>
+		<script type="text/javascript" src="includes/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="includes/js/angular.js"></script>
+		<script type="text/javascript" src="includes/js/fcsanumber.js"></script>
+		<script type="text/javascript" src="includes/js/app.js"></script>
+	</body>
 </html>

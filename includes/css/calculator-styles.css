@@ -1,0 +1,19 @@
+body{font-family: Arial, sans-serif; color: #646464; background-color: #FFF; width: 100%;}
+.container{}
+.orange-text{color: #FF6000;}
+.blue-text{color: #0099CC;}
+h1{font-size: 24px;}
+.user-input-section{background-color: #EEE; padding: 15px;}
+h4{font-weight: normal; font-size: 16px; margin-bottom: 20px;}
+.field{margin-bottom: 10px;}
+label{font-size: 14px; font-weight: normal; padding: 6px 0;}
+.center-align{text-align: center;}
+.lessmargin{margin-bottom: 3px;}
+.output-section{}
+.output-primary{background-color: #FFE6CC; padding: 15px;}
+.output-section.results > .row.field{margin-bottom: 20px;}
+.output-label{font-size: 16px;}
+.output-stats{font-size: 30px;}
+.output-secondary{background-color: #ECF7FF; padding: 15px;}
+.table-bordered{border: 1px solid #646464;}
+.table-bordered > tbody > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > thead > tr > th, .table-bordered > tbody > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > thead > tr > th{border: 1px solid #646464;}
