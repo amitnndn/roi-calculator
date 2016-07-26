@@ -1,8 +1,23 @@
 var roiCalculator = angular.module("roiCalculator",["fcsa-number"]);
 
+roiCalculator.directive('emptyToZero', function () {
+    return {
+        restrict: 'A',
+        require: 'ngModel',
+        link: function (scope, elem, attrs, ctrl) {
+            ctrl.$parsers.push(function(viewValue) {
+                if(viewValue == 0) {
+                    return "0";
+                }
+                return viewValue;
+            });
+        }
+    };
+});
+
 roiCalculator.controller("calculatorController",function($scope){
 	$scope.minSpending = $scope.maxSpending = $scope.yearlyRevenue = $scope.revenuePerCustomer = $scope.visitorPercent = $scope.salesPercent = $scope.leadsPerHundred = $scope.salesPerTen = 0;
-	
+
 	$scope.change = function(){
 		alert(change);
 	};
@@ -71,4 +86,59 @@ roiCalculator.controller("calculatorController",function($scope){
 		var returnVal = $scope.monthlyRevenue()*($scope.maxSpending/100)/$scope.visitorsPerMonth();
 		return returnVal;
 	}
+
+	$scope.$watch("leadsPerHundred",function(newValue,oldValue){
+		if(newValue == 0){
+			$scope.leadsPerHundred = "0";
+		}
+		else{
+			$scope.leadsPerHundred = $scope.leadsPerHundred.replace(/^0+/, '');
+		}
+	});
+
+	$scope.$watch("salesPerTen",function(newValue,oldValue){
+		if(newValue == 0){
+			$scope.salesPerTen = "0";
+		}
+		else{
+			$scope.salesPerTen = $scope.salesPerTen.replace(/^0+/, '');
+		}
+	});
+
+	$scope.$watch("revenuePerCustomer", function(newValue,oldValue){
+		console.log(newValue);
+		if(newValue == 0){
+			$scope.revenuePerCustomer = "0";
+		}
+		else{
+			$scope.revenuePerCustomer = $scope.revenuePerCustomer.replace(/^0+/, '');;
+		}
+	});
+
+	$scope.$watch("yearlyRevenue", function(newValue,oldValue){
+		if(newValue == 0){
+			$scope.yearlyRevenue = "0";
+		}
+		else{
+			$scope.yearlyRevenue = $scope.yearlyRevenue.replace(/^0+/, '');;
+		}
+	});
+
+	$scope.$watch("minSpending", function(newValue,oldValue){
+		if(newValue == 0){
+			$scope.minSpending = "0";
+		}
+		else{
+			$scope.minSpending = $scope.minSpending.replace(/^0+/, '');;
+		}
+	});
+
+	$scope.$watch("maxSpending", function(newValue,oldValue){
+		if(newValue == 0){
+			$scope.maxSpending = "0";
+		}
+		else{
+			$scope.maxSpending = $scope.maxSpending.replace(/^0+/, '');;
+		}
+	});
 });

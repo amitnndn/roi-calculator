@@ -25,7 +25,7 @@
 							<label>For every 100 visitors to your site, how many turn into leads?</label>
 						</div>
 						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
-							<input type="text" class="form-control" ng-model="leadsPerHundred" />
+							<input type="text" class="form-control" ng-model="leadsPerHundred" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -34,7 +34,7 @@
 							<label>For every 10 leads, how many turn into sales?</label>
 						</div>
 						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
-							<input type="text" class="form-control" ng-model="salesPerTen" />
+							<input type="text" class="form-control" ng-model="salesPerTen" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -43,7 +43,7 @@
 							<label>How much in annual revenue ($) does one customer bring to you?</label>
 						</div>
 						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
-							<input type="text" class="form-control" fcsa-number="{ prepend : '$'}" ng-model="revenuePerCustomer" />
+							<input type="text" class="form-control" fcsa-number="{ }" ng-model="revenuePerCustomer" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -52,7 +52,7 @@
 							<label>What is your total target revenue ($) for the next 12 months?<sup>*</sup></label>
 						</div>
 						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
-							<input type="text" class="form-control" fcsa-number="{ prepend : '$' }" ng-model="yearlyRevenue" />
+							<input type="text" class="form-control" fcsa-number="{ }" ng-model="yearlyRevenue" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -78,11 +78,11 @@
 							<div class="row">
 								<div class="col-xs-6">
 									<label class="visible-xs center-align">Minimum</label>
-									<input type="text" class="form-control" fcsa-number="{ prepend : '$' }" ng-model="minSpending" />
+									<input type="text" class="form-control" fcsa-number="{ }" ng-model="minSpending" />
 								</div>
 								<div class="col-xs-6">
 									<label class="visible-xs center-align">Maximum</label>
-									<input type="text" class="form-control" fcsa-number="{ prepend : '$' }" ng-model="maxSpending" />
+									<input type="text" class="form-control" fcsa-number="{ }" ng-model="maxSpending" />
 								</div>
 								<div class="clearfix"></div>
 							</div>
