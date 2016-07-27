@@ -25,7 +25,7 @@
 							<label>For every 100 visitors to your site, how many turn into leads?</label>
 						</div>
 						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
-							<input type="text" class="form-control" ng-model="leadsPerHundred" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
+							<input type="text" class="form-control" ng-model="leadsPerHundred" onkeypress="return event.charCode >= 48 && event.charCode <= 57 && event.charCode == 8 && event.charCode == 46"/>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -34,7 +34,7 @@
 							<label>For every 10 leads, how many turn into sales?</label>
 						</div>
 						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
-							<input type="text" class="form-control" ng-model="salesPerTen" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
+							<input type="text" class="form-control" ng-model="salesPerTen" onkeypress="return event.charCode >= 48 && event.charCode <= 57 && event.charCode == 8 && event.charCode == 46"/>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -45,7 +45,7 @@
 						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
 							<div class="input-group">
 								<div class="input-group-addon">$</div>
-								<input type="text" class="form-control" fcsa-number="{ }" ng-model="revenuePerCustomer" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
+								<input type="text" class="form-control" fcsa-number="{ }" ng-model="revenuePerCustomer" onkeypress="return event.charCode >= 48 && event.charCode <= 57 && event.charCode == 8 && event.charCode == 46"/>
 							</div>
 						</div>
 						<div class="clearfix"></div>
@@ -57,7 +57,7 @@
 						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
 							<div class="input-group">
 								<div class="input-group-addon">$</div>
-								<input type="text" class="form-control" fcsa-number="{ }" ng-model="yearlyRevenue" onkeypress="return event.charCode >= 48 && event.charCode <= 57"/>
+								<input type="text" class="form-control" fcsa-number="{ }" ng-model="yearlyRevenue" onkeypress="return event.charCode >= 48 && event.charCode <= 57 && event.charCode == 8 && event.charCode == 46"/>
 							</div>
 						</div>
 						<div class="clearfix"></div>
@@ -86,14 +86,14 @@
 									<label class="visible-xs center-align">Minimum</label>
 									<div class="input-group">
 										<div class="input-group-addon">$</div>
-										<input type="text" class="form-control" fcsa-number="{ }" ng-model="minSpending" />
+										<input type="text" class="form-control" fcsa-number="{ }" ng-model="minSpending" onkeypress="return event.charCode >= 48 && event.charCode <= 57 && event.charCode == 8 && event.charCode == 46"/>
 									</div>
 								</div>
 								<div class="col-xs-6">
 									<label class="visible-xs center-align">Maximum</label>
 									<div class="input-group">
 										<div class="input-group-addon">$</div>
-										<input type="text" class="form-control" fcsa-number="{ }" ng-model="maxSpending" />
+										<input type="text" class="form-control" fcsa-number="{ }" ng-model="maxSpending" onkeypress="return event.charCode >= 48 && event.charCode <= 57 && event.charCode == 8 && event.charCode == 46"/>
 									</div>
 								</div>
 								<div class="clearfix"></div>
