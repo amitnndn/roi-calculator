@@ -45,7 +45,7 @@
 						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
 							<div class="input-group">
 								<div class="input-group-addon">$</div>
-								<input type="text" class="form-control" fcsa-number="{ }" ng-model="revenuePerCustomer" onkeypress="return validateQty(event);"/>
+								<input type="text" class="form-control" ng-model="revenuePerCustomer" format="number" onkeypress="return validateQty(event);"/>
 							</div>
 						</div>
 						<div class="clearfix"></div>
@@ -57,7 +57,7 @@
 						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
 							<div class="input-group">
 								<div class="input-group-addon">$</div>
-								<input type="text" class="form-control" fcsa-number="{ }" ng-model="yearlyRevenue" onkeypress="return validateQty(event);"/>
+								<input type="text" class="form-control" ng-model="yearlyRevenue" format="number" onkeypress="return validateQty(event);"/>
 							</div>
 						</div>
 						<div class="clearfix"></div>
@@ -86,14 +86,14 @@
 									<label class="visible-xs center-align">Minimum</label>
 									<div class="input-group">
 										<div class="input-group-addon">$</div>
-										<input type="text" class="form-control" fcsa-number="{ }" ng-model="minSpending" onkeypress="return validateQty(event);"/>
+										<input type="text" class="form-control"  ng-model="minSpending" ng-change="validityCheck()" ng-model-options="{ updateOn : 'blur'}" format="number" onkeypress="return validateQty(event);"/>
 									</div>
 								</div>
 								<div class="col-xs-6">
 									<label class="visible-xs center-align">Maximum</label>
 									<div class="input-group">
 										<div class="input-group-addon">$</div>
-										<input type="text" class="form-control" fcsa-number="{ }" ng-model="maxSpending" onkeypress="return validateQty(event);"/>
+										<input type="text" class="form-control" ng-model="maxSpending" ng-change="validityCheck()" ng-model-options="{ updateOn : 'blur'}" format="number" onkeypress="return validateQty(event);"/>
 									</div>
 								</div>
 								<div class="clearfix"></div>

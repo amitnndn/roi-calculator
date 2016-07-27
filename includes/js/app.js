@@ -1,22 +1,33 @@
 var roiCalculator = angular.module("roiCalculator",["fcsa-number"]);
 
-roiCalculator.directive('emptyToZero', function () {
+roiCalculator.$inject = ['$scope'];
+
+
+roiCalculator.directive('format', ['$filter', function ($filter) {
     return {
-        restrict: 'A',
-        require: 'ngModel',
+        require: '?ngModel',
         link: function (scope, elem, attrs, ctrl) {
-            ctrl.$parsers.push(function(viewValue) {
-                if(viewValue == 0) {
-                    return "0";
-                }
-                return viewValue;
+            if (!ctrl) return;
+
+
+            ctrl.$formatters.unshift(function (a) {
+                return $filter(attrs.format)(ctrl.$modelValue)
+            });
+
+
+            ctrl.$parsers.unshift(function (viewValue) {
+                var plainNumber = viewValue.replace(/[^\d|\-+|\.+]/g, '');
+                elem.val($filter(attrs.format)(plainNumber));
+                return plainNumber;
             });
         }
     };
-});
+}]);
 
 roiCalculator.controller("calculatorController",function($scope){
-	$scope.minSpending = $scope.maxSpending = $scope.yearlyRevenue = $scope.revenuePerCustomer = $scope.visitorPercent = $scope.salesPercent = $scope.leadsPerHundred = $scope.salesPerTen = 0;
+	$scope.minSpending = /*$scope.maxSpending =*/ $scope.yearlyRevenue = $scope.revenuePerCustomer = $scope.visitorPercent = $scope.salesPercent = $scope.leadsPerHundred = $scope.salesPerTen = 0;
+
+	$scope.maxSpending = "0";
 
 	$scope.change = function(){
 		alert(change);
@@ -134,7 +145,7 @@ roiCalculator.controller("calculatorController",function($scope){
 			$scope.minSpending = "0";
 		}
 		else{
-			$scope.minSpending = $scope.minSpending.replace(/^0+/, '');;
+			$scope.minSpending = $scope.minSpending.replace(/^0+/, '');
 		}
 	});
 
@@ -142,8 +153,11 @@ roiCalculator.controller("calculatorController",function($scope){
 		if(newValue == 0){
 			$scope.maxSpending = "0";
 		}
-		else{
-			$scope.maxSpending = $scope.maxSpending.replace(/^0+/, '');;
-		}
 	});
+
+	$scope.validityCheck = function(){
+		if($scope.maxSpending-0 < $scope.minSpending-0){
+			$scope.maxSpending = $scope.minSpending-0;
+		}
+	};
 });
