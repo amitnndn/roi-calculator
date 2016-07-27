@@ -91,6 +91,9 @@ roiCalculator.controller("calculatorController",function($scope){
 		if(newValue == 0){
 			$scope.leadsPerHundred = "0";
 		}
+		else if(newValue >= 100){
+			$scope.leadsPerHundred = "100";
+		}
 		else{
 			$scope.leadsPerHundred = $scope.leadsPerHundred.replace(/^0+/, '');
 		}
@@ -100,13 +103,15 @@ roiCalculator.controller("calculatorController",function($scope){
 		if(newValue == 0){
 			$scope.salesPerTen = "0";
 		}
+		else if(newValue >= 10){
+			$scope.salesPerTen = "10";
+		}
 		else{
 			$scope.salesPerTen = $scope.salesPerTen.replace(/^0+/, '');
 		}
 	});
 
 	$scope.$watch("revenuePerCustomer", function(newValue,oldValue){
-		console.log(newValue);
 		if(newValue == 0){
 			$scope.revenuePerCustomer = "0";
 		}
