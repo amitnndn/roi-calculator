@@ -2,28 +2,6 @@ var roiCalculator = angular.module("roiCalculator",["fcsa-number"]);
 
 roiCalculator.$inject = ['$scope'];
 
-
-roiCalculator.directive('format', ['$filter', function ($filter) {
-    return {
-        require: '?ngModel',
-        link: function (scope, elem, attrs, ctrl) {
-            if (!ctrl) return;
-
-
-            ctrl.$formatters.unshift(function (a) {
-                return $filter(attrs.format)(ctrl.$modelValue)
-            });
-
-
-            ctrl.$parsers.unshift(function (viewValue) {
-                var plainNumber = viewValue.replace(/[^\d|\-+|\.+]/g, '');
-                elem.val($filter(attrs.format)(plainNumber));
-                return plainNumber;
-            });
-        }
-    };
-}]);
-
 roiCalculator.controller("calculatorController",function($scope){
 	$scope.minSpending = /*$scope.maxSpending =*/ $scope.yearlyRevenue = $scope.revenuePerCustomer = $scope.visitorPercent = $scope.salesPercent = $scope.leadsPerHundred = $scope.salesPerTen = 0;
 
