@@ -1,7 +1,5 @@
 var roiCalculator = angular.module("roiCalculator",["fcsa-number"]);
 
-roiCalculator.$inject = ['$scope'];
-
 roiCalculator.controller("calculatorController",function($scope){
 	$scope.minSpending = /*$scope.maxSpending =*/ $scope.yearlyRevenue = $scope.revenuePerCustomer = $scope.visitorPercent = $scope.salesPercent = $scope.leadsPerHundred = $scope.salesPerTen = 0;
 
