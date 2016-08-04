@@ -5,6 +5,31 @@ roiCalculator.controller("calculatorController",function($scope){
 
 	$scope.maxSpending = "0";
 
+	$scope.currency_code = "$";
+
+	$scope.currency_options = [
+		{
+			value : '$',
+			label : 'US Dollars'
+		},
+		{
+			value : '€',
+			label : 'Euro'
+		},
+		{
+			value : '₹',
+			label : 'Indian Rupee'
+		},
+		{
+			value : '£',
+			label : 'British Pound Sterling'
+		},
+		{
+			value : '¥',
+			label : 'Japanese Yen'
+		}
+	];
+
 	$scope.change = function(){
 		alert(change);
 	};

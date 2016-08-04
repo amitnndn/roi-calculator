@@ -26,12 +26,13 @@
 							<label>Choose your Currency</label>
 						</div>
 						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
-							<select class="selectpicker" data-width="100%">
-								<option value="$">US Dollar</option>
+							<select class="selectpicker" data-width="100%" ng-model="currency_code">
+								<!-- <option value="$">US Dollar</option>
 								<option value="€">Euro</option>
 								<option value="₹">Indian Rupee</option>
 								<option value="£">British Pound Sterling</option>
-								<option value="¥">Japanese Yen</option>
+								<option value="¥">Japanese Yen</option> -->
+								<option ng-repeat="i in currency_options" value="{{i.value}}">{{i.label}}</option>
 							</select>
 						</div>
 						<div class="clearfix"></div>
@@ -56,11 +57,11 @@
 					</div>
 					<div class="row field">
 						<div class="col-lg-8 col-md-7 col-sm-6 col-xs-12">
-							<label>How much in annual revenue ($) does one customer bring to you?</label>
+							<label>How much in annual revenue ({{currency_code}}) does one customer bring to you?</label>
 						</div>
 						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
 							<div class="input-group">
-								<div class="input-group-addon">$</div>
+								<div class="input-group-addon">{{currency_code}}</div>
 								<input type="text" class="form-control" ng-model="revenuePerCustomer" format="number" onkeypress="return validateQty(event);"/>
 							</div>
 						</div>
@@ -68,11 +69,11 @@
 					</div>
 					<div class="row field">
 						<div class="col-lg-8 col-md-7 col-sm-6 col-xs-12">
-							<label>What is your total target revenue ($) for the next 12 months?<sup>*</sup></label>
+							<label>What is your total target revenue ({{currency_code}}) for the next 12 months?<sup>*</sup></label>
 						</div>
 						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
 							<div class="input-group">
-								<div class="input-group-addon">$</div>
+								<div class="input-group-addon">{{currency_code}}</div>
 								<input type="text" class="form-control" ng-model="yearlyRevenue" format="number" onkeypress="return validateQty(event);"/>
 							</div>
 						</div>
@@ -94,21 +95,21 @@
 					</div>
 					<div class="row field">
 						<div class="col-lg-8 col-md-7 col-sm-6 col-xs-12">
-							<label>Out of every $100 in revenue, how much would spend on marketing?<sup>*</sup></label>
+							<label>Out of every {{currency_code}}100 in revenue, how much would spend on marketing?<sup>*</sup></label>
 						</div>
 						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
 							<div class="row">
 								<div class="col-xs-6">
 									<label class="visible-xs center-align">Min</label>
 									<div class="input-group">
-										<div class="input-group-addon">$</div>
+										<div class="input-group-addon">{{currency_code}}</div>
 										<input type="text" class="form-control"  ng-model="minSpending" ng-change="validityCheck()" ng-model-options="{ updateOn : 'blur'}" format="number" onkeypress="return validateQty(event);"/>
 									</div>
 								</div>
 								<div class="col-xs-6">
 									<label class="visible-xs center-align">Max</label>
 									<div class="input-group">
-										<div class="input-group-addon">$</div>
+										<div class="input-group-addon">{{currency_code}}</div>
 										<input type="text" class="form-control" ng-model="maxSpending" ng-change="validityCheck()" ng-model-options="{ updateOn : 'blur'}" format="number" onkeypress="return validateQty(event);"/>
 									</div>
 								</div>
@@ -132,7 +133,7 @@
 							</div>
 							<div class="col-sm-4 center-align">
 								<div class="output-label">Target Monthly Revenue</div>
-								<div ng-model="monthlyRevenue" class="output-stats blue-text">${{monthlyRevenue() | number:0}}</div>
+								<div ng-model="monthlyRevenue" class="output-stats blue-text">{{currency_code}}{{monthlyRevenue() | number:0}}</div>
 							</div>
 							<div class="clearfix"></div>
 						</div>
@@ -166,23 +167,23 @@
 								<tbody>
 									<tr>
 										<td>Cost per Visitor</td>
-										<td>${{minCostPerVisitor() | number:0}}</td>
-										<td>${{maxCostPerVisitor() | number:0}}</td>
+										<td>{{currency_code}}{{minCostPerVisitor() | number:0}}</td>
+										<td>{{currency_code}}{{maxCostPerVisitor() | number:0}}</td>
 									</tr>
 									<tr>
 										<td>Cost per Lead</td>
-										<td>${{minCostPerLead() | number:0}}</td>
-										<td>${{maxCostPerLead() | number:0}}</td>
+										<td>{{currency_code}}{{minCostPerLead() | number:0}}</td>
+										<td>{{currency_code}}{{maxCostPerLead() | number:0}}</td>
 									</tr>
 									<tr>
 										<td>Cost per Sale</td>
-										<td>${{minCostPerSale() | number:0}}</td>
-										<td>${{maxCostPerSale() | number:0}}</td>
+										<td>{{currency_code}}{{minCostPerSale() | number:0}}</td>
+										<td>{{currency_code}}{{maxCostPerSale() | number:0}}</td>
 									</tr>
 									<tr>
 										<td>Estimated monthly marketing budget</td>
-										<td>${{minCostPerSale() | number:0}}</td>
-										<td>${{maxCostPerSale() | number:0}}</td>
+										<td>{{currency_code}}{{minCostPerLead()*leadsNumber()*10 | number:0}}</td>
+										<td>{{currency_code}}{{maxCostPerLead()*leadsNumber()*10 | number:0}}</td>
 									</tr>
 								</tbody>
 							</table>
