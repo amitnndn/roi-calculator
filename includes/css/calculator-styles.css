@@ -13,7 +13,16 @@ label{font-size: 14px; font-weight: normal; padding: 6px 0;}
 .output-primary{background-color: #FFE6CC; padding: 15px;}
 .output-section.results > .row.field{margin-bottom: 20px;}
 .output-label{font-size: 16px;}
+.output-label.two-line{min-height: 60px;}
 .output-stats{font-size: 30px;}
 .output-secondary{background-color: #ECF7FF; padding: 15px;}
 .table-bordered{border: 1px solid #646464;}
 .table-bordered > tbody > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > thead > tr > th, .table-bordered > tbody > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > thead > tr > th{border: 1px solid #646464;}
+
+@media(max-width: 1001px){
+	.output-label.two-line{min-height: 80px;}
+}
+
+@media(max-width: 768px){
+	.output-label.two-line{height: auto !important;}
+}
