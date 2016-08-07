@@ -27,11 +27,6 @@
 						</div>
 						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
 							<select class="selectpicker" data-width="100%" ng-model="currency_code">
-								<!-- <option value="$">US Dollar</option>
-								<option value="€">Euro</option>
-								<option value="₹">Indian Rupee</option>
-								<option value="£">British Pound Sterling</option>
-								<option value="¥">Japanese Yen</option> -->
 								<option ng-repeat="i in currency_options" value="{{i.value}}">{{i.label}}</option>
 							</select>
 						</div>
@@ -137,7 +132,7 @@
 							</div>
 							<div class="clearfix"></div>
 						</div>
-						<div ng-show="monthlyRevenue() && revenuePerCustomer" class="row field">
+						<div class="second-row-output" ng-show="monthlyRevenue() && revenuePerCustomer" class="row field">
 							<div class="col-sm-4 center-align">
 								<div class="output-label two-line">Number of Sales Required per {{monthOrYearSales}}</div>
 								<div class="output-stats blue-text">{{salesNumber() | number:0}}</div>
@@ -155,38 +150,43 @@
 					</div>
 					<div class="output-secondary" ng-show="monthlyRevenue() && revenuePerCustomer && minSpending && maxSpending">
 						<h4 class="orange-text">Estimated Costs</h4>
-						<div class="table-responsive">
-							<table class="table table-bordered">
-								<thead>
-									<tr>
-										<th></th>
-										<th>Minimum</th>
-										<th>Maximum</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td>Cost per Visitor</td>
-										<td>{{currency_code}}{{minCostPerVisitor() | number:0}}</td>
-										<td>{{currency_code}}{{maxCostPerVisitor() | number:0}}</td>
-									</tr>
-									<tr>
-										<td>Cost per Lead</td>
-										<td>{{currency_code}}{{minCostPerLead() | number:0}}</td>
-										<td>{{currency_code}}{{maxCostPerLead() | number:0}}</td>
-									</tr>
-									<tr>
-										<td>Cost per Sale</td>
-										<td>{{currency_code}}{{minCostPerSale() | number:0}}</td>
-										<td>{{currency_code}}{{maxCostPerSale() | number:0}}</td>
-									</tr>
-									<tr>
-										<td>Estimated monthly marketing budget</td>
-										<td>{{currency_code}}{{minCostPerLead()*leadsNumber()*10 | number:0}}</td>
-										<td>{{currency_code}}{{maxCostPerLead()*leadsNumber()*10 | number:0}}</td>
-									</tr>
-								</tbody>
-							</table>
+						<div class="estimated-costs">
+							<div class="section-row header border-bottom">Cost per Visitor</div>
+							<div class="section-row">
+								<div class="section-header border-right border-bottom">Min</div>
+								<div class="section-header border-bottom">Max</div>
+							</div>
+							<div class="section-row">
+								<div class="section-stat border-right border-bottom">{{currency_code}}{{minCostPerVisitor() | number:0}}</div>
+								<div class="section-stat border-bottom">{{currency_code}}{{maxCostPerVisitor() | number:0}}</div>
+							</div>
+							<div class="section-row header border-bottom">Cost per Lead</div>
+							<div class="section-row">
+								<div class="section-header border-right border-bottom">Min</div>
+								<div class="section-header border-bottom">Max</div>
+							</div>
+							<div class="section-row">
+								<div class="section-stat border-right border-bottom">{{currency_code}}{{minCostPerLead() | number:0}}</div>
+								<div class="section-stat border-bottom">{{currency_code}}{{maxCostPerLead() | number:0}}</div>
+							</div>
+							<div class="section-row header border-bottom">Cost per Sale</div>
+							<div class="section-row">
+								<div class="section-header border-right border-bottom">Min</div>
+								<div class="section-header border-bottom">Max</div>
+							</div>
+							<div class="section-row">
+								<div class="section-stat border-right border-bottom">{{currency_code}}{{minCostPerSale() | number:0}}</div>
+								<div class="section-stat border-bottom">{{currency_code}}{{maxCostPerSale() | number:0}}</div>
+							</div>
+							<div class="section-row header border-bottom">Estimated Monthly Marketing Budget</div>
+							<div class="section-row">
+								<div class="section-header border-right">Min</div>
+								<div class="section-header border-bottom">Max</div>
+							</div>
+							<div class="section-row">
+								<div class="section-stat border-right">{{currency_code}}{{minCostPerLead()*leadsNumber()*10 | number:0}}</div>
+								<div class="section-stat border-bottom">{{currency_code}}{{maxCostPerLead()*leadsNumber()*10 | number:0}}</div>
+							</div>
 						</div>
 					</div>
 				</div>

@@ -16,9 +16,15 @@ label{font-size: 14px; font-weight: normal; padding: 6px 0;}
 .output-label.two-line{min-height: 60px;}
 .output-stats{font-size: 30px;}
 .output-secondary{background-color: #ECF7FF; padding: 15px;}
-.table-bordered{border: 1px solid #646464;}
-.table-bordered > tbody > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > thead > tr > th, .table-bordered > tbody > tr > td, .table-bordered > tbody > tr > th, .table-bordered > tfoot > tr > td, .table-bordered > tfoot > tr > th, .table-bordered > thead > tr > td, .table-bordered > thead > tr > th{border: 1px solid #646464;}
-
+.estimated-costs{border: 1px solid #646464;}
+.border-bottom{border-bottom: 1px solid #646464;}
+.border-left{border-left: 1px solid #646464;}
+.border-right{border-right: 1px solid #646464;}
+.border-top{border-top: 1px solid #646464;}
+.estimated-costs > .section-row{overflow: hidden; text-align: center;}
+.estimated-costs > .section-row.header{padding: 6px 12px; font-size: 16px;}
+.estimated-costs > .section-row > .section-header{padding: 6px 12px; float: left; width: 50%;}
+.estimated-costs > .section-row > .section-stat{padding: 6px 12px; float: left; width: 50%; color: #0099cc; font-size: 27px;}
 @media(max-width: 1001px){
 	.output-label.two-line{min-height: 80px;}
 }
