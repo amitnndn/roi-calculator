@@ -30,5 +30,5 @@ label{font-size: 14px; font-weight: normal; padding: 6px 0;}
 }
 
 @media(max-width: 768px){
-	.output-label.two-line{height: auto !important;}
+	.output-label.two-line{height: auto !important; min-height: 0;}
 }
