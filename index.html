@@ -116,7 +116,7 @@
 				</div>
 				<div class="output-section results">
 					<div class="output-primary">
-						<h4 class="orange-text">Output</h4>
+						<h4 class="orange-text">Marketing Targets</h4>
 						<div class="row field">
 							<div class="col-sm-4 center-align">
 								<div class="output-label">Lead Conversion Rate</div>
@@ -180,12 +180,12 @@
 							</div>
 							<div class="section-row header border-bottom">Estimated Monthly Marketing Budget</div>
 							<div class="section-row">
-								<div class="section-header border-right">Min</div>
+								<div class="section-header border-right border-bottom">Min</div>
 								<div class="section-header border-bottom">Max</div>
 							</div>
 							<div class="section-row">
 								<div class="section-stat border-right">{{currency_code}}{{minCostPerLead()*leadsNumber()*10 | number:0}}</div>
-								<div class="section-stat border-bottom">{{currency_code}}{{maxCostPerLead()*leadsNumber()*10 | number:0}}</div>
+								<div class="section-stat">{{currency_code}}{{maxCostPerLead()*leadsNumber()*10 | number:0}}</div>
 							</div>
 						</div>
 					</div>
