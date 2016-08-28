@@ -35,6 +35,31 @@ $(function(){
 
 });
 
+function roundDecimals(num, noOfPrecisions){
+    var precision = Math.pow(10,noOfPrecisions);
+    return Math.round(num * precision) / precision;
+}
+
+function addSeparatorsNF(nStr, inD, outD, sep){
+    nStr += '';
+    var dpos = nStr.indexOf(inD);
+    var nStrEnd = '';
+    if (dpos != -1) {
+        nStrEnd = outD + nStr.substring(dpos + 1, nStr.length);
+        nStr = nStr.substring(0, dpos);
+    }
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(nStr)) {
+        nStr = nStr.replace(rgx, '$1' + sep + '$2');
+    }
+    return nStr + nStrEnd;
+}
+
+function FormatAsThousands(amount, noOfPrecisions){
+    amount = (noOfPrecisions > 0) ? roundDecimals(amount, noOfPrecisions) : Math.round(amount);
+    return addSeparatorsNF(amount,'.','.',',');
+}
+
 function validateQty(event) {
     var key = window.event ? event.keyCode : event.which;
     if (event.keyCode == 8 || event.keyCode == 46
