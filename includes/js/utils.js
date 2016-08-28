@@ -92,8 +92,8 @@ function FormatAsThousands(amount, noOfPrecisions){
 
 function validateQty(event) {
     var key = window.event ? event.keyCode : event.which;
-    if (event.keyCode == 8 || event.keyCode == 46
-     || event.keyCode == 37 || event.keyCode == 39) {
+    console.log(key);
+    if (key == 8 || key == 46 || key == 37 || key == 39 || key == 0) {
         return true;
     }
     else if ( key < 48 || key > 57 ) {
