@@ -32,3 +32,6 @@ label{font-size: 14px; font-weight: normal; padding: 6px 0;}
 @media(max-width: 768px){
 	.output-label.two-line{height: auto !important; min-height: 0;}
 }
+#inputParent { position : relative;}
+label#showValue { position:absolute; left:0; top:0;}
+input#decimal:focus + label#showValue { display : none; }

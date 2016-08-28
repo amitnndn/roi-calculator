@@ -112,6 +112,7 @@ roiCalculator.controller("calculatorController",function($scope){
 	});
 
 	$scope.$watch("salesPerTen",function(newValue,oldValue){
+		
 		if(newValue == 0){
 			$scope.salesPerTen = "0";
 		}
@@ -124,6 +125,7 @@ roiCalculator.controller("calculatorController",function($scope){
 	});
 
 	$scope.$watch("revenuePerCustomer", function(newValue,oldValue){
+
 		if(newValue == 0){
 			$scope.revenuePerCustomer = "0";
 		}
