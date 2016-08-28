@@ -1,4 +1,3 @@
-
 roiCalculator.directive('format', ['$filter', function ($filter) {
     return {
             require: '?ngModel',
@@ -48,53 +47,21 @@ $(function(){
         $(this).parent().find('label.form-control').css('z-index', '5');
     })
 
+    $('input.decimal-input').keypress(function(e) {
+        this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');
+    });
+
+    $('#number').keypress(function(e){
+        if (/\D/g.test(this.value))
+        {
+            this.value = this.value.replace(/\D/g, '');
+        }
+    });
+
 });
-
-var rounding = (function () {
-  "use strict";
-    return {
-        FormatAsThousands: (function (amount,noOfPrecisions) {
-            amount = (noOfPrecisions > 0) ? this.roundDecimals(amount, noOfPrecisions) : Math.round(amount);
-            var returnVal = this.addSeparatorsNF(amount,'.','.',',');
-            return returnVal;
-        }),
-        addSeparatorsNF: (function (nStr, inD, outD, sep) {
-            nStr += '';
-            var dpos = nStr.indexOf(inD);
-            var nStrEnd = '';
-            if (dpos != -1) {
-                nStrEnd = outD + nStr.substring(dpos + 1, nStr.length);
-                nStr = nStr.substring(0, dpos);
-            }
-            var rgx = /(\d+)(\d{3})/;
-            while (rgx.test(nStr)) {
-                nStr = nStr.replace(rgx, '$1' + sep + '$2');
-            }
-            return nStr + nStrEnd;
-        }),
-        roundDecimals : (function(num, noOfPrecisions){
-            var precision = Math.pow(10,noOfPrecisions);
-            return Math.round(num * precision) / precision;
-        })
-   };
-}());
-
-function roundDecimals(num, noOfPrecisions){
-    var precision = Math.pow(10,noOfPrecisions);
-    return Math.round(num * precision) / precision;
-}
-
-function addSeparatorsNF(nStr, inD, outD, sep){
-    
-}
-
-function FormatAsThousands(amount, noOfPrecisions){
-    
-}
 
 function validateQty(event) {
     var key = window.event ? event.keyCode : event.which;
-    console.log(key);
     if (key == 8 || key == 46 || key == 37 || key == 39 || key == 0) {
         return true;
     }
