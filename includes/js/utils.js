@@ -26,7 +26,26 @@ roiCalculator.directive('format', ['$filter', function ($filter) {
 }]);
 
 $(function(){
+    $(document).on('click', 'label.form-control', function(){
+        $(this).parent().find('label.form-control').hide();
+        $(this).parent().find('input.decimal-input').show().focus();
+    })
 
+    $(document).on('focus', 'label.form-control', function(){
+        $(this).parent().find('label.form-control').hide();
+        $(this).parent().find('input.decimal-input').show().focus();
+    })
+
+    $(document).on('blur', 'label.form-control', function(){
+        $(this).parent().find('label.form-control').show();
+        $(this).parent().find('input.decimal-input').hide();
+    })
+
+    $(document).on('blur', 'input.decimal-input', function(){
+        $(this).parent().find('label.form-control').show();
+        $(this).parent().find('input.decimal-input').hide();
+    })
+    
 });
 
 var rounding = (function () {
