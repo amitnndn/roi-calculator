@@ -57,8 +57,10 @@
 						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
 							<div class="input-group">
 								<div class="input-group-addon">{{currency_code}}</div>
-								<input type="text" class="form-control decimal-input" ng-model="revenuePerCustomer" format="number" onkeypress="return validateQty(event);"/>
-								<label class="form-control">{{revenuePerCustomer | number:2}}</label>
+								<div class="label-input">
+									<input type="text" class="form-control decimal-input" ng-model="revenuePerCustomer" format="number" onkeypress="return validateQty(event);"/>
+									<label class="form-control">{{revenuePerCustomer | number:2}}</label>
+								</div>
 							</div>
 						</div>
 						<div class="clearfix"></div>
@@ -70,8 +72,10 @@
 						<div class="col-lg-4 col-md-5 col-sm-6 col-xs-12">
 							<div class="input-group">
 								<div class="input-group-addon">{{currency_code}}</div>
-								<input type="text" class="form-control decimal-input" ng-model="yearlyRevenue" format="number" onkeypress="return validateQty(event);"/>
-								<label class="form-control">{{yearlyRevenue | number:2}}</label>
+								<div class="label-input">
+									<input type="text" class="form-control decimal-input" ng-model="yearlyRevenue" format="number" onkeypress="return validateQty(event);"/>
+									<label class="form-control">{{yearlyRevenue | number:2}}</label>
+								</div>
 							</div>
 						</div>
 						<div class="clearfix"></div>
@@ -100,16 +104,20 @@
 									<label class="visible-xs center-align">Min</label>
 									<div class="input-group">
 										<div class="input-group-addon">{{currency_code}}</div>
-										<input type="text" class="form-control decimal-input" ng-model="minSpending" ng-change="validityCheck()" ng-model-options="{ updateOn : 'blur'}" format="number" onkeypress="return validateQty(event);"/>
-										<label class="form-control">{{minSpending | number:2}}</label>
+										<div class="label-input">
+											<input type="text" class="form-control decimal-input" ng-model="minSpending" ng-change="validityCheck()" ng-model-options="{ updateOn : 'blur'}" format="number" onkeypress="return validateQty(event);"/>
+											<label class="form-control">{{minSpending | number:2}}</label>
+										</div>
 									</div>
 								</div>
 								<div class="col-xs-6">
 									<label class="visible-xs center-align">Max</label>
 									<div class="input-group">
 										<div class="input-group-addon">{{currency_code}}</div>
+										<div class="label-input">
 										<input type="text" class="form-control decimal-input" ng-model="maxSpending" ng-change="validityCheck()" ng-model-options="{ updateOn : 'blur'}" format="number" onkeypress="return validateQty(event);"/>
 										<label class="form-control">{{maxSpending | number:2}}</label>
+										</div>
 									</div>
 								</div>
 								<div class="clearfix"></div>

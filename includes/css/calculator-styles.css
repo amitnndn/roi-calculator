@@ -25,8 +25,9 @@ label{font-size: 14px; font-weight: normal; padding: 6px 0;}
 .estimated-costs > .section-row.header{padding: 6px 12px; font-size: 16px;}
 .estimated-costs > .section-row > .section-header{padding: 6px 12px; float: left; width: 50%;}
 .estimated-costs > .section-row > .section-stat{padding: 6px 12px; float: left; width: 50%; color: #0099cc; font-size: 27px;}
-.input-group .form-control.decimal-input{display: none;}
-label.form-control{cursor: pointer;}
+.label-input{position: relative;}
+.input-group label.form-control{position: absolute; left: 0; top: 0; z-index: 5}
+
 @media(max-width: 1001px){
 	.output-label.two-line{min-height: 80px;}
 }

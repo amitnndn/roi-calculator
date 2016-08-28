@@ -27,25 +27,27 @@ roiCalculator.directive('format', ['$filter', function ($filter) {
 
 $(function(){
     $(document).on('click', 'label.form-control', function(){
-        $(this).parent().find('label.form-control').hide();
-        $(this).parent().find('input.decimal-input').show().focus();
+        $(this).parent().find('label.form-control').css('z-index', '2');
+        $(this).parent().find('input.decimal-input').focus();
     })
 
     $(document).on('focus', 'label.form-control', function(){
-        $(this).parent().find('label.form-control').hide();
-        $(this).parent().find('input.decimal-input').show().focus();
+        $(this).parent().find('label.form-control').css('z-index', '2');
+        $(this).parent().find('input.decimal-input').focus();
+    })
+
+    $(document).on('focus', 'input.decimal-input', function(){
+        $(this).parent().find('label.form-control').css('z-index', '2');
     })
 
     $(document).on('blur', 'label.form-control', function(){
-        $(this).parent().find('label.form-control').show();
-        $(this).parent().find('input.decimal-input').hide();
+        $(this).parent().find('label.form-control').css('z-index', '5');
     })
 
     $(document).on('blur', 'input.decimal-input', function(){
-        $(this).parent().find('label.form-control').show();
-        $(this).parent().find('input.decimal-input').hide();
+        $(this).parent().find('label.form-control').css('z-index', '5');
     })
-    
+
 });
 
 var rounding = (function () {
