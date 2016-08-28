@@ -132,7 +132,7 @@
 							</div>
 							<div class="col-sm-4 center-align">
 								<div class="output-label">Target Monthly Revenue</div>
-								<div ng-model="monthlyRevenue" class="output-stats blue-text">{{currency_code}}{{monthlyRevenue() | number:0}}</div>
+								<div ng-model="monthlyRevenue" class="output-stats blue-text">{{currency_code}}{{monthlyRevenue() | number:2}}</div>
 							</div>
 							<div class="clearfix"></div>
 						</div>
@@ -161,8 +161,8 @@
 								<div class="section-header border-bottom">Max</div>
 							</div>
 							<div class="section-row">
-								<div class="section-stat border-right border-bottom">{{currency_code}}{{minCostPerVisitor() | number:0}}</div>
-								<div class="section-stat border-bottom">{{currency_code}}{{maxCostPerVisitor() | number:0}}</div>
+								<div class="section-stat border-right border-bottom">{{currency_code}}{{minCostPerVisitor() | number:2}}</div>
+								<div class="section-stat border-bottom">{{currency_code}}{{maxCostPerVisitor() | number:2}}</div>
 							</div>
 							<div class="section-row header border-bottom">Cost per Lead</div>
 							<div class="section-row">
@@ -170,8 +170,8 @@
 								<div class="section-header border-bottom">Max</div>
 							</div>
 							<div class="section-row">
-								<div class="section-stat border-right border-bottom">{{currency_code}}{{minCostPerLead() | number:0}}</div>
-								<div class="section-stat border-bottom">{{currency_code}}{{maxCostPerLead() | number:0}}</div>
+								<div class="section-stat border-right border-bottom">{{currency_code}}{{minCostPerLead() | number:2}}</div>
+								<div class="section-stat border-bottom">{{currency_code}}{{maxCostPerLead() | number:2}}</div>
 							</div>
 							<div class="section-row header border-bottom">Cost per Sale</div>
 							<div class="section-row">
@@ -179,8 +179,8 @@
 								<div class="section-header border-bottom">Max</div>
 							</div>
 							<div class="section-row">
-								<div class="section-stat border-right border-bottom">{{currency_code}}{{minCostPerSale() | number:0}}</div>
-								<div class="section-stat border-bottom">{{currency_code}}{{maxCostPerSale() | number:0}}</div>
+								<div class="section-stat border-right border-bottom">{{currency_code}}{{minCostPerSale() | number:2}}</div>
+								<div class="section-stat border-bottom">{{currency_code}}{{maxCostPerSale() | number:2}}</div>
 							</div>
 							<div class="section-row header border-bottom">Estimated Monthly Marketing Budget</div>
 							<div class="section-row">
@@ -188,8 +188,8 @@
 								<div class="section-header border-bottom">Max</div>
 							</div>
 							<div class="section-row">
-								<div class="section-stat border-right">{{currency_code}}{{minCostPerLead()*leadsNumber()*10 | number:0}}</div>
-								<div class="section-stat">{{currency_code}}{{maxCostPerLead()*leadsNumber()*10 | number:0}}</div>
+								<div class="section-stat border-right">{{currency_code}}{{minCostPerLead()*leadsNumber()*10 | number:2}}</div>
+								<div class="section-stat">{{currency_code}}{{maxCostPerLead()*leadsNumber()*10 | number:2}}</div>
 							</div>
 						</div>
 					</div>
